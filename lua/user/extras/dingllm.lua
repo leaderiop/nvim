@@ -143,4 +143,6 @@ M =
       vim.keymap.set({ 'n', 'v' }, '<leader>O', ollama_help, { desc = 'llm ollama_help' })
       vim.keymap.set({ 'n', 'v' }, '<leader>o', llama_405b_base, { desc = 'llama base' })
     end,
-  },
+  }
+
+return M
