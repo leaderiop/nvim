@@ -1,11 +1,19 @@
 local M = {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
-  -- dependencies = {
-  --   {
-  --     "folke/neodev.nvim",
-  --   },
-  -- },
+  dependencies = {
+    {
+      "folke/lazydev.nvim",
+      ft = "lua", -- only load on lua files
+      opts = {
+        library = {
+          -- See the configuration section for more details
+          -- Load luvit types when the `vim.uv` word is found
+          { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        },
+      },
+    },
+  },
 }
 
 local function lsp_keymaps(bufnr)
@@ -64,11 +72,11 @@ function M.config()
   local wk = require "which-key"
   wk.add {
     { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
-    {
-      "<leader>lf",
-      "<cmd>lua vim.lsp.buf.format({async = true, filter = function(client) return client.name ~= 'typescript-tools' end})<cr>",
-      desc = "Format",
-    },
+    -- {
+    --   "<leader>lf",
+    --   "<cmd>lua vim.lsp.buf.format({async = true, filter = function(client) return client.name ~= 'typescript-tools' end})<cr>",
+    --   desc = "Format",
+    -- },
     {
       "<leader>li",
       "<cmd>LspInfo<cr>",
@@ -89,11 +97,11 @@ function M.config()
       "<cmd>lua vim.diagnostic.goto_prev()<cr>",
       desc = "Prev Diagnostic",
     },
-    {
-      "<leader>ll",
-      "<cmd>lua vim.lsp.codelens.run()<cr>",
-      desc = "CodeLens Action",
-    },
+    -- {
+    --   "<leader>ll",
+    --   "<cmd>lua vim.lsp.codelens.run()<cr>",
+    --   desc = "CodeLens Action",
+    -- },
     {
       "<leader>lq",
       "<cmd>lua vim.diagnostic.setloclist()<cr>",
