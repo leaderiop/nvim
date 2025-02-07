@@ -1,12 +1,7 @@
 local M = {
   "folke/trouble.nvim",
-}
+  keys = {
 
-function M.config()
-  require("trouble").setup {}
-  local wk = require "which-key"
-
-  wk.add {
     {
       "<leader>lb",
       "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
@@ -27,7 +22,7 @@ function M.config()
       "<cmd>Trouble todo toggle<cr>",
       desc = "TODO",
     },
-  }
-end
+  },
+}
 
 return M

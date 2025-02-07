@@ -6,6 +6,8 @@ local M = {
 
 function M.config()
   local lspconfig = require "user.lspconfig"
+  local nvim_lsp = require('lspconfig')
+
   require("typescript-tools").setup {
     on_attach = function(client, bufnr)
       lspconfig.on_attach(client, bufnr)
@@ -13,6 +15,8 @@ function M.config()
       client.server_capabilities.documentRangeFormattingProvider = false
     end,
     capabilities = lspconfig.common_capabilities(),
+    -- root_dir = nvim_lsp.util.root_pattern("package.json"),
+
     settings = {
       -- spawn additional tsserver instance to calculate diagnostics on it
       separate_diagnostic_server = true,
@@ -30,11 +34,11 @@ function M.config()
       tsserver_file_preferences = {
         includeInlayParameterNameHints = "all", -- "none" | "literals" | "all";
         includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-        includeInlayFunctionParameterTypeHints = true,
-        includeInlayVariableTypeHints = true,
+        includeInlayFunctionParameterTypeHints = false,
+        includeInlayVariableTypeHints = false,
         includeInlayVariableTypeHintsWhenTypeMatchesName = true,
         includeInlayPropertyDeclarationTypeHints = true,
-        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = false,
         includeInlayEnumMemberValueHints = true,
 
         includeCompletionsForModuleExports = true,
