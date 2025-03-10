@@ -4,6 +4,15 @@ local M = {
     explorer = {
       replace_netrw = true,
     },
+    picker = {
+      sources = {
+        explorer = {
+          files = {
+            hidden = true,
+          },
+        },
+      },
+    },
   },
   keys = {
     {

@@ -1,5 +1,8 @@
 local M = {
   "ahmedkhalf/project.nvim",
+  dependencies = {
+    "nvim-telescope/telescope.nvim",
+  },
   event = "VeryLazy",
 }
 

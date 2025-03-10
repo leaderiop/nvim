@@ -9,6 +9,7 @@ return {
     local wk = require "which-key"
 
     lint.linters_by_ft = {
+      -- Remove ESLint from nvim-lint since we're using the ESLint LSP server
       javascript = { "eslint", "eslint_d" },
       typescript = { "eslint", "eslint_d" },
       javascriptreact = { "eslint_d" },
@@ -35,10 +36,10 @@ return {
         desc = "Lint",
       },
     }
-    -- vim.keymap.set("n", "<leader>ll", function()
-    --   local get_clients = vim.lsp.get_clients
-    --   local client = get_clients({ bufnr = 0 })[1] or {}
-    --   lint.try_lint(nil, { cwd = client.root_dir })
-    -- end, { desc = "trigger linting for current file" })
+    vim.keymap.set("n", "<leader>ll", function()
+      local get_clients = vim.lsp.get_clients
+      local client = get_clients({ bufnr = 0 })[1] or {}
+      lint.try_lint(nil, { cwd = client.root_dir })
+    end, { desc = "trigger linting for current file" })
   end,
 }

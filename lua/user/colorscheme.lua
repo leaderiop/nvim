@@ -1,12 +1,19 @@
-local M = {
-  -- "LunarVim/primer.nvim",
-  "ChristianChiarulli/defaultplus",
-  lazy = false, -- make sure we load this during startup if it is your main colorscheme
-  priority = 1000, -- make sure to load this before all the other start plugins
+return {
+  "sekke276/dark_flat.nvim",
+  lazy = false,
+  priority = 1000,
+  config = function()
+    require("dark_flat").setup {
+      transparent = true,
+      themes = function(colors)
+        return {
+          Normal = { bg = colors.lmao },
+          DiffChange = { fg = colors.white:darken(0.7) },
+          ErrorMsg = { fg = colors.purple, standout = true },
+          ["@lsp.type.keyword"] = { link = "@keyword" },
+        }
+      end,
+      italics = false,
+    }
+  end,
 }
-
-function M.config()
-  vim.cmd.colorscheme "defaultplus"
-end
-
-return M
